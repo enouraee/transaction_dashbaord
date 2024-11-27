@@ -161,3 +161,6 @@ LOGGING = {
         },
     },
 }
+
+# Use signed cookie-based sessions to avoid requiring a database for session storage
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
