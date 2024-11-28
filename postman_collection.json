@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "802db673-c73c-4fbe-8d9e-58dfa2bbef8d",
+		"name": "Zibal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11183308",
+		"_collection_link": "https://swantech.postman.co/workspace/Ariana~25c541d1-0e10-4a8a-be1a-f87ab56a06e7/collection/11183308-802db673-c73c-4fbe-8d9e-58dfa2bbef8d?action=share&source=collection_link&creator=11183308"
+	},
+	"item": [
+		{
+			"name": "Transaction History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/transactions/transaction-history/?type=amount&mode=daily",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transactions",
+						"transaction-history",
+						""
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "amount"
+						},
+						{
+							"key": "mode",
+							"value": "daily"
+						},
+						{
+							"key": "merchantId",
+							"value": "63a69a2d18f9347bdafd5e10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction Summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/transactions/transaction-summary/?type=amount&mode=daily",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transactions",
+						"transaction-summary",
+						""
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "amount"
+						},
+						{
+							"key": "mode",
+							"value": "daily"
+						},
+						{
+							"key": "merchantId",
+							"value": "63a69a2d18f9347bdafd5e10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
