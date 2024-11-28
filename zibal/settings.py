@@ -171,7 +171,6 @@ SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
 # Celery settings
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_MONGODB_BACKEND_SETTINGS = {
     "database": os.getenv("DB_NAME"),
     "taskmeta_collection": "celery_taskmeta",
@@ -181,10 +180,11 @@ CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Tehran"
+BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 CELERY_BEAT_SCHEDULE = {
     "send-daily-reports": {
         "task": "notifications.tasks.send_daily_reports",
-        "schedule": crontab(minute="*"),  # Runs every minute
+        "schedule": crontab(hour=0, minute=0),
     },
 }

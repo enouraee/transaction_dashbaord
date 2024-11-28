@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+
+  celery_worker:
+    build: .
+    command: celery -A zibal worker --loglevel=info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+
+  celery_beat:
+    build: .
+    command: celery -A zibal beat --loglevel=info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - backend
+
+  mongo:
+    image: mongo:4.4
+    volumes:
+      - mongo_data:/data/db
+      - ./zibal_db_backup.archive:/docker-entrypoint-initdb.d/zibal_db_backup.archive
+    networks:
+      - backend
+
+  redis:
+    image: redis:6-alpine
+    networks:
+      - backend
+
+volumes:
+  mongo_data:
+
+networks:
+  backend:
