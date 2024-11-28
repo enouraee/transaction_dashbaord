@@ -1,1 +1,2 @@
 from .transaction_history import TransactionHistoryView
+from .transactions_summary import TransactionSummaryView

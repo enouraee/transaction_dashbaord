@@ -16,7 +16,11 @@ def format_group_id_to_date_key(group_id, mode):
 
     Raises:
     - ValueError: If the mode is not one of 'daily', 'weekly', or 'monthly'.
+
     """
+
+    group_id = {k: v for k, v in group_id.items() if k != "merchantId"}
+
     if mode == "daily":
         date = datetime.datetime(group_id["year"], group_id["month"], group_id["day"])
         jalali_date = JalaliDate(date)
